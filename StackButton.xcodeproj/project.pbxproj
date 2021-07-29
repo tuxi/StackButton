@@ -68,7 +68,6 @@
 				D04B4F7226B314F900CF7550 /* Assets.xcassets */,
 				D04B4F7426B314F900CF7550 /* LaunchScreen.storyboard */,
 				D04B4F7726B314F900CF7550 /* Info.plist */,
-				D04B4F7F26B315BB00CF7550 /* ControlElement.swift */,
 			);
 			path = StackButton;
 			sourceTree = "<group>";
@@ -77,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				D04B4F8226B31A9B00CF7550 /* StackButton.swift */,
+				D04B4F7F26B315BB00CF7550 /* ControlElement.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
