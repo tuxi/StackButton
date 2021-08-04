@@ -75,7 +75,7 @@ open class StackButton: ControlElement {
                 case .right, .trailing:
                     $0.constant = contentEdgeInsets.right
                 default:
-                    assertionFailure()
+                    break
                 }
             }
         }
@@ -248,24 +248,37 @@ open class StackButton: ControlElement {
         var contentViewHFormat = "H:|-(left)-[view]-(right)-|"
         var contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
         
+        /// 上下左右的约束优先级跟垂直和横向对齐有关
+        var priorities = (top: Float(600), left: Float(600), bottom: Float(600), right: Float(600))
+        
         switch contentHorizontalAlignment {
         case .left, .leading:
             contentViewHFormat = "H:|-(left)-[view]-(<=right)-|"
+            priorities.left = 1000
         case .right, .trailing:
-            contentViewHFormat = "H:|-(>=left)-[view]-(right)-|"
+            contentViewHFormat = "H:|-(left)-[view]-(right)-|"
+            priorities.right = 1000
         case .center, .fill:
             contentViewHFormat = "H:|-(left)-[view]-(right)-|"
+            contentViewConstraints.append(
+                contentView.centerXAnchor.constraint(equalTo: centerXAnchor)
+            )
         @unknown default:
             break
         }
         
         switch contentVerticalAlignment {
         case .top:
-            contentViewVFormat = "V:|-(top)-[view]-(<=bottom)-|"
+            contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
+            priorities.top = 1000
         case .bottom:
-            contentViewVFormat = "V:|-(>=top)-[view]-(bottom)-|"
+            contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
+            priorities.bottom = 1000
         case .center, .fill:
             contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
+            contentViewConstraints.append(
+                contentView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            )
         @unknown default:
             break
         }
@@ -273,7 +286,20 @@ open class StackButton: ControlElement {
         contentViewConstraints.append(contentsOf: ([contentViewHFormat, contentViewVFormat].flatMap {
             NSLayoutConstraint.constraints(withVisualFormat: $0, metrics: metrics, views: ["view": contentView])
         }))
-        
+        contentViewConstraints.forEach { value in
+            switch value.firstAttribute {
+            case .left, .leading:
+                value.priority = UILayoutPriority(priorities.left)
+            case .bottom:
+                value.priority = UILayoutPriority(priorities.bottom)
+            case .right, .trailing:
+                value.priority = UILayoutPriority(priorities.right)
+            case .top:
+                value.priority = UILayoutPriority(priorities.top)
+            default:
+                break
+            }
+        }
         addConstraints(contentViewConstraints)
     }
     

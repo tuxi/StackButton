@@ -16,6 +16,22 @@ class ViewController: UIViewController {
         let titleView = ContentView()
         titleView.backgroundColor = .red
         self.navigationItem.titleView = titleView
+        
+        let centerBtn = StackButton(frame: CGRect(x: 100, y: 200, width: 120, height: 60))
+        centerBtn.setTitle("点我", for: .normal)
+        view.addSubview(centerBtn)
+        centerBtn.translatesAutoresizingMaskIntoConstraints = false
+        centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        centerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        centerBtn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        centerBtn.backgroundColor = UIColor.black
+        centerBtn.setTitleColor(.white, for: .normal)
+        centerBtn.setImage(UIImage(named: "map_filter_selected"), for: .normal)
+        centerBtn.titleImageSpacing = 8
+        centerBtn.imagePosition = .front
+        
+        centerBtn.contentHorizontalAlignment = .left
     }
 }
 
