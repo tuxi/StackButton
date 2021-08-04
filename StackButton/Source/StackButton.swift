@@ -245,21 +245,18 @@ open class StackButton: ControlElement {
         let insets = self.contentEdgeInsets
         let metrics: [String : Any] = ["left" : insets.left, "right" : insets.right, "top" : insets.top, "bottom" : insets.bottom, "spacing": titleImageSpacing]
         
-        var contentViewHFormat = "H:|-(left)-[view]-(right)-|"
-        var contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
+        let contentViewHFormat = "H:|-(left)-[view]-(right)-|"
+        let contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
         
         /// 上下左右的约束优先级跟垂直和横向对齐有关
-        var priorities = (top: Float(600), left: Float(600), bottom: Float(600), right: Float(600))
+        var priorities = (top: Float(900), left: Float(900), bottom: Float(900), right: Float(900))
         
         switch contentHorizontalAlignment {
         case .left, .leading:
-            contentViewHFormat = "H:|-(left)-[view]-(<=right)-|"
             priorities.left = 1000
         case .right, .trailing:
-            contentViewHFormat = "H:|-(left)-[view]-(right)-|"
             priorities.right = 1000
         case .center, .fill:
-            contentViewHFormat = "H:|-(left)-[view]-(right)-|"
             contentViewConstraints.append(
                 contentView.centerXAnchor.constraint(equalTo: centerXAnchor)
             )
@@ -269,13 +266,10 @@ open class StackButton: ControlElement {
         
         switch contentVerticalAlignment {
         case .top:
-            contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
             priorities.top = 1000
         case .bottom:
-            contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
             priorities.bottom = 1000
         case .center, .fill:
-            contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
             contentViewConstraints.append(
                 contentView.centerYAnchor.constraint(equalTo: centerYAnchor)
             )

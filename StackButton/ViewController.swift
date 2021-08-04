@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var timer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +22,12 @@ class ViewController: UIViewController {
         let centerBtn = StackButton(frame: CGRect(x: 100, y: 200, width: 120, height: 60))
         centerBtn.setTitle("点我", for: .normal)
         view.addSubview(centerBtn)
+        
+        // 打开注释，测试使用自动布局
         centerBtn.translatesAutoresizingMaskIntoConstraints = false
         centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        centerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        centerBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        centerBtn.leadingAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         centerBtn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         centerBtn.backgroundColor = UIColor.black
@@ -30,8 +35,50 @@ class ViewController: UIViewController {
         centerBtn.setImage(UIImage(named: "map_filter_selected"), for: .normal)
         centerBtn.titleImageSpacing = 8
         centerBtn.imagePosition = .front
+        centerBtn.titleLabel.numberOfLines = 1
         
         centerBtn.contentHorizontalAlignment = .left
+        
+        centerBtn.addTarget(self, action: #selector(tapCenterBtn), for: .touchUpInside)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak centerBtn] timer in
+            self?.tapCenterBtn(sender: centerBtn!)
+        }
+    }
+    
+    @objc private func tapCenterBtn(sender: StackButton) {
+        sender.titleLabel.numberOfLines = 1
+        switch sender.contentHorizontalAlignment {
+        case .left:
+            sender.contentHorizontalAlignment = .right
+            sender.setTitle("右对齐", for: .normal)
+        case .right:
+            sender.contentHorizontalAlignment = .center
+            sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
+            sender.titleLabel.numberOfLines = 0
+        case .center:
+            sender.contentHorizontalAlignment = .left
+            sender.setTitle("左对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+            sender.titleLabel.numberOfLines = 1
+        default:
+            break
+        }
+        
+//        switch sender.contentVerticalAlignment {
+//        case .top:
+//            sender.contentVerticalAlignment = .bottom
+//            sender.setTitle("下对齐", for: .normal)
+//        case .bottom:
+//            sender.contentVerticalAlignment = .center
+//            sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
+//            sender.titleLabel.numberOfLines = 0
+//        case .center:
+//            sender.contentVerticalAlignment = .top
+//            sender.setTitle("上对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+//            sender.titleLabel.numberOfLines = 1
+//        default:
+//            break
+//        }
     }
 }
 
