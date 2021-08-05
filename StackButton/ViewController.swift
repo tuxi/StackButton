@@ -19,68 +19,120 @@ class ViewController: UIViewController {
         titleView.backgroundColor = .red
         self.navigationItem.titleView = titleView
         
-        let centerBtn = StackButton(frame: CGRect(x: 100, y: 200, width: 120, height: 60))
-        centerBtn.setTitle("点我", for: .normal)
-        view.addSubview(centerBtn)
+        let hButton = testHButton()
+        let vButton = testVButton()
         
-        // 打开注释，测试使用自动布局
-        centerBtn.translatesAutoresizingMaskIntoConstraints = false
-        centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        centerBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        centerBtn.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -50).isActive = true
+        let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30))
+        frameButton.setTitle("你好frame", for: .normal)
+        frameButton.backgroundColor = .red
+        view.addSubview(frameButton)
         
-        centerBtn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        centerBtn.backgroundColor = UIColor.black
-        centerBtn.setTitleColor(.white, for: .normal)
-//        centerBtn.setImage(UIImage(named: "map_filter_selected"), for: .normal)
-        centerBtn.spacing = 8
-        centerBtn.imagePosition = .front
-        centerBtn.titleLabel.numberOfLines = 1
-        
-        centerBtn.contentHorizontalAlignment = .left
-        
-        centerBtn.addTarget(self, action: #selector(tapCenterBtn), for: .touchUpInside)
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak centerBtn] timer in
-            self?.tapCenterBtn(sender: centerBtn!)
+        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak hButton, weak vButton] timer in
+            self?.tapButton(sender: hButton!)
+            DispatchQueue.main.async {            
+                self?.tapButton(sender: vButton!)
+            }
         }
         
         // 问题：当未设置image时，imageView被拉伸的问题
     }
     
-    @objc private func tapCenterBtn(sender: StackButton) {
+    /// 测试横向布局的StackButton
+    func testHButton() -> StackButton {
+        let hButton = StackButton()
+        hButton.setTitle("点我", for: .normal)
+        view.addSubview(hButton)
+        
+        //        hButton.frame = (frame: CGRect(x: 100, y: 200, width: 120, height: 60))
+        // 打开注释，测试使用自动布局
+        hButton.translatesAutoresizingMaskIntoConstraints = false
+        hButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        hButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        hButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -50).isActive = true
+        
+        hButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        hButton.backgroundColor = UIColor.orange
+        hButton.setTitleColor(.white, for: .normal)
+        hButton.setImage(UIImage(named: "map_filter_selected"), for: .normal)
+        hButton.spacing = 8
+        hButton.imagePosition = .front
+        hButton.titleLabel.numberOfLines = 1
+        
+        hButton.contentHorizontalAlignment = .left
+        
+        hButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        return hButton
+    }
+    
+    /// 测试垂直布局的StackButton
+    func testVButton() -> StackButton {
+        let button = StackButton(axis: .vertical)
+        button.setTitle("点我", for: .normal)
+        view.addSubview(button)
+        
+        // 打开注释，测试使用自动布局
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        button.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -30).isActive = true
+        
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.backgroundColor = UIColor.black
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "map_filter_selected"), for: .normal)
+        button.spacing = 8
+        button.imagePosition = .front
+        button.titleLabel.numberOfLines = 1
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        return button
+    }
+    
+    @objc private func tapButton(sender: StackButton) {
         sender.titleLabel.numberOfLines = 1
-        switch sender.contentHorizontalAlignment {
-        case .left:
-            sender.contentHorizontalAlignment = .right
-            sender.setTitle("右对齐", for: .normal)
-        case .right:
-            sender.contentHorizontalAlignment = .center
-            sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
-            sender.titleLabel.numberOfLines = 0
-        case .center:
-            sender.contentHorizontalAlignment = .left
-            sender.setTitle("左对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
-            sender.titleLabel.numberOfLines = 1
-        default:
+        sender.setImage(UIImage(named: "map_filter_selected"), for: .normal)
+        sender.imagePosition = .front
+        
+        switch sender.axis {
+        case .horizontal:
+            switch sender.contentHorizontalAlignment {
+            case .left:
+                sender.contentHorizontalAlignment = .right
+                sender.setTitle("右对齐", for: .normal)
+            case .right:
+                sender.contentHorizontalAlignment = .center
+                sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
+                sender.titleLabel.numberOfLines = 0
+                sender.imagePosition = .back
+            case .center:
+                sender.contentHorizontalAlignment = .left
+                sender.setTitle("左对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+                sender.titleLabel.numberOfLines = 1
+                sender.setImage(nil, for: .normal)
+            default:
+                break
+            }
+        case .vertical:
+            switch sender.contentVerticalAlignment {
+            case .top:
+                sender.contentVerticalAlignment = .bottom
+                sender.setTitle("底部对齐", for: .normal)
+            case .bottom:
+                sender.contentVerticalAlignment = .center
+                sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
+                sender.titleLabel.numberOfLines = 0
+                sender.imagePosition = .back
+            case .center:
+                sender.contentVerticalAlignment = .top
+                sender.setTitle("顶部对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+                sender.titleLabel.numberOfLines = 1
+                sender.setImage(nil, for: .normal)
+            default:
+                break
+            }
+        @unknown default:
             break
         }
-        
-//        switch sender.contentVerticalAlignment {
-//        case .top:
-//            sender.contentVerticalAlignment = .bottom
-//            sender.setTitle("下对齐", for: .normal)
-//        case .bottom:
-//            sender.contentVerticalAlignment = .center
-//            sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
-//            sender.titleLabel.numberOfLines = 0
-//        case .center:
-//            sender.contentVerticalAlignment = .top
-//            sender.setTitle("上对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
-//            sender.titleLabel.numberOfLines = 1
-//        default:
-//            break
-//        }
         
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()

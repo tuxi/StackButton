@@ -83,6 +83,16 @@ open class StackButton: ControlElement {
     
     open override var contentHorizontalAlignment: UIControl.ContentHorizontalAlignment {
         didSet {
+            switch contentHorizontalAlignment {
+            case .center:
+                self.titleLabel.textAlignment = .center
+            case .left, .leading:
+                self.titleLabel.textAlignment = .left
+            case .right, .trailing:
+                self.titleLabel.textAlignment = .right
+            default:
+                break
+            }
             updateContentViewConstraints()
         }
     }
@@ -122,6 +132,9 @@ open class StackButton: ControlElement {
     private var contentViewConstraints = [NSLayoutConstraint]()
     private var spacingConstraint: NSLayoutConstraint?
     private var zeroImageConstraint: (width: NSLayoutConstraint, height: NSLayoutConstraint)?
+    
+    private var hasTitle = false
+    private var hasImage = false
     
     // MARK: - Init
     
@@ -262,6 +275,8 @@ open class StackButton: ControlElement {
             print(#function)
         }
         addConstraints(subviewsConstraints)
+        
+        updateSpacing()
     }
     
     /// 给`contentView`添加约束
@@ -371,8 +386,8 @@ open class StackButton: ControlElement {
     }
     
     private func updateViewProperties() {
-        var hasTitle = false
-        var hasImage = false
+        hasTitle = false
+        hasImage = false
         if let color = properties[currentState]?[.backgroundColor] as? UIColor {
             backgroundColor = color
         }
@@ -394,6 +409,7 @@ open class StackButton: ControlElement {
                 hasTitle = true
             }
         }
+        
         if let image = properties[currentState]?[.image] as? UIImage {
             imageView.image = image
             setNeedsLayout()
@@ -401,8 +417,13 @@ open class StackButton: ControlElement {
                 hasImage = true
             }
         }
+        
         imageView.alpha = adjustImageWhenHighlighted ? 0.3 : 1
         
+        updateSpacing()
+    }
+    
+    private func updateSpacing() {
         if hasImage, hasTitle {
             spacingConstraint?.constant = spacing
         }
