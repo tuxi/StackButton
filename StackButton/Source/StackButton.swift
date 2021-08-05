@@ -44,7 +44,7 @@ open class StackButton: ControlElement {
     ]
     
     /// 子控件之间的间距
-    open var titleImageSpacing: CGFloat = 0 {
+    open var spacing: CGFloat = 0 {
         didSet {
             setNeedsUpdateConstraints()
         }
@@ -120,6 +120,8 @@ open class StackButton: ControlElement {
     
     private var subviewsConstraints = [NSLayoutConstraint]()
     private var contentViewConstraints = [NSLayoutConstraint]()
+    private var spacingConstraint: NSLayoutConstraint?
+    private var zeroImageConstraint: (width: NSLayoutConstraint, height: NSLayoutConstraint)?
     
     // MARK: - Init
     
@@ -158,8 +160,11 @@ open class StackButton: ControlElement {
         imageView.setContentHuggingPriority(.required, for: .vertical)
         imageView.setContentCompressionResistancePriority(.required, for: .vertical)
         
+        let imageWidth = imageView.widthAnchor.constraint(equalToConstant: 0)
+        let imageHeight = imageView.heightAnchor.constraint(equalToConstant: 0)
+        zeroImageConstraint = (imageWidth, imageHeight)
+        
         /// 抵抗外部设置Button最大宽度时，即使不满足条件也被拉伸的问题
-        /// `button.widthAnchor.constraint(lessThanOrEqualToConstant: 80).isActive = true`
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         
         updateContentViewConstraints()
@@ -175,7 +180,7 @@ open class StackButton: ControlElement {
         removeConstraints(subviewsConstraints)
         subviewsConstraints.removeAll()
         
-        let metrics: [String : Any] = ["spacing": titleImageSpacing]
+        let metrics: [String : Any] = ["spacing": spacing]
         
         var frontView: UIView
         var backView: UIView
@@ -234,6 +239,28 @@ open class StackButton: ControlElement {
             NSLayoutConstraint.constraints(withVisualFormat: $0, metrics: metrics, views: views)
         }))
         
+        spacingConstraint = subviewsConstraints.first { constraint in
+            guard let firstView = constraint.firstItem as? UIView,
+                  let secondView = constraint.secondItem as? UIView else {
+                return false
+            }
+            switch axis {
+            case .horizontal:
+                if constraint.firstAttribute == .leading || constraint.secondAttribute == .trailing, firstView == backView, secondView == frontView {
+                    return true
+                }
+            case .vertical:
+                if constraint.firstAttribute == .top || constraint.secondAttribute == .bottom, firstView == backView, secondView == frontView {
+                    return true
+                }
+            @unknown default:
+                break
+            }
+            return false
+        }
+        if spacingConstraint != nil {
+            print(#function)
+        }
         addConstraints(subviewsConstraints)
     }
     
@@ -243,7 +270,7 @@ open class StackButton: ControlElement {
         contentViewConstraints.removeAll()
         
         let insets = self.contentEdgeInsets
-        let metrics: [String : Any] = ["left" : insets.left, "right" : insets.right, "top" : insets.top, "bottom" : insets.bottom, "spacing": titleImageSpacing]
+        let metrics: [String : Any] = ["left" : insets.left, "right" : insets.right, "top" : insets.top, "bottom" : insets.bottom]
         
         let contentViewHFormat = "H:|-(left)-[view]-(right)-|"
         let contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
@@ -344,6 +371,8 @@ open class StackButton: ControlElement {
     }
     
     private func updateViewProperties() {
+        var hasTitle = false
+        var hasImage = false
         if let color = properties[currentState]?[.backgroundColor] as? UIColor {
             backgroundColor = color
         }
@@ -354,16 +383,49 @@ open class StackButton: ControlElement {
         if let title = properties[currentState]?[.title] as? String {
             titleLabel.text = title
             setNeedsLayout()
+            if title.count > 0 {
+                hasTitle = true
+            }
         }
         if let attributedTitle = properties[currentState]?[.attributedTitle] as? NSAttributedString {
             titleLabel.attributedText = attributedTitle
             setNeedsLayout()
+            if attributedTitle.length > 0 {
+                hasTitle = true
+            }
         }
         if let image = properties[currentState]?[.image] as? UIImage {
             imageView.image = image
             setNeedsLayout()
+            if !image.size.equalTo(.zero) {
+                hasImage = true
+            }
         }
         imageView.alpha = adjustImageWhenHighlighted ? 0.3 : 1
+        
+        if hasImage, hasTitle {
+            spacingConstraint?.constant = spacing
+        }
+        else {
+            spacingConstraint?.constant = 0
+        }
+        
+        if !hasImage {
+            switch axis {
+            case .horizontal:
+                zeroImageConstraint?.width.isActive = true
+                zeroImageConstraint?.height.isActive = false
+            case .vertical:
+                zeroImageConstraint?.height.isActive = true
+                zeroImageConstraint?.width.isActive = false
+            @unknown default:
+                break
+            }
+        }
+        else {
+            zeroImageConstraint?.width.isActive = false
+            zeroImageConstraint?.height.isActive = false
+        }
     }
     
     // MARK: - Animations

@@ -27,13 +27,13 @@ class ViewController: UIViewController {
         centerBtn.translatesAutoresizingMaskIntoConstraints = false
         centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         centerBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        centerBtn.leadingAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        centerBtn.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -50).isActive = true
         
         centerBtn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         centerBtn.backgroundColor = UIColor.black
         centerBtn.setTitleColor(.white, for: .normal)
-        centerBtn.setImage(UIImage(named: "map_filter_selected"), for: .normal)
-        centerBtn.titleImageSpacing = 8
+//        centerBtn.setImage(UIImage(named: "map_filter_selected"), for: .normal)
+        centerBtn.spacing = 8
         centerBtn.imagePosition = .front
         centerBtn.titleLabel.numberOfLines = 1
         
@@ -44,6 +44,8 @@ class ViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak centerBtn] timer in
             self?.tapCenterBtn(sender: centerBtn!)
         }
+        
+        // 问题：当未设置image时，imageView被拉伸的问题
     }
     
     @objc private func tapCenterBtn(sender: StackButton) {
@@ -79,6 +81,10 @@ class ViewController: UIViewController {
 //        default:
 //            break
 //        }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
@@ -113,7 +119,7 @@ public class ContentView: UIView {
         btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         btn.titleLabel.lineBreakMode = .byTruncatingTail
         btn.imagePosition = .back
-        btn.titleImageSpacing = 6
+        btn.spacing = 6
         return btn
     }()
     
