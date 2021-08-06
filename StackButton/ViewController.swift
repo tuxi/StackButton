@@ -26,12 +26,10 @@ class ViewController: UIViewController {
         
         timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak hButton, weak vButton] timer in
             self?.tapButton(sender: hButton!)
-            DispatchQueue.main.async {            
+            DispatchQueue.main.async {
                 self?.tapButton(sender: vButton!)
             }
         }
-        
-        // 问题：当未设置image时，imageView被拉伸的问题
     }
     
     /// 测试横向布局的StackButton
@@ -90,9 +88,13 @@ class ViewController: UIViewController {
         frameButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         frameButton.spacing = 10
         frameButton.setTitle("你好frame", for: .normal)
+        frameButton.setTitle("传将为特斯拉提供刀片电池，9000亿比亚迪股价盘中又创新高", for: .highlighted)
         frameButton.backgroundColor = .red
         frameButton.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)
+        frameButton.setImage(UIImage(named: "map_filter_selected"), for: .highlighted)
         frameButton.sizeToFit()
+        frameButton.addTarget(self, action: #selector(tapFrameButton), for: [.touchDown, .touchDragEnter])
+        frameButton.addTarget(self, action: #selector(tapFrameButton), for: [.touchUpInside, .touchDragExit, .touchCancel])
         view.addSubview(frameButton)
     }
     
@@ -113,15 +115,17 @@ class ViewController: UIViewController {
                 sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
                 sender.titleLabel.numberOfLines = 0
                 sender.imagePosition = .back
+                sender.axis = .vertical
             case .center:
                 sender.contentHorizontalAlignment = .left
-                sender.setTitle("左对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+                sender.setTitle("无图片，左对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
                 sender.titleLabel.numberOfLines = 1
                 sender.setImage(nil, for: .normal)
             default:
                 break
             }
         case .vertical:
+            sender.axis = .vertical
             switch sender.contentVerticalAlignment {
             case .top:
                 sender.contentVerticalAlignment = .bottom
@@ -134,9 +138,10 @@ class ViewController: UIViewController {
                 sender.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)
             case .center:
                 sender.contentVerticalAlignment = .top
-                sender.setTitle("顶部对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
+                sender.setTitle("无图片，顶部对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
                 sender.titleLabel.numberOfLines = 1
                 sender.setImage(nil, for: .normal)
+                sender.axis = .horizontal
             default:
                 break
             }
@@ -147,6 +152,10 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc private func tapFrameButton(sender: StackButton) {
+        sender.sizeToFit()
     }
 }
 

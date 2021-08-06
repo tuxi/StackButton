@@ -25,7 +25,7 @@ open class StackButton: ControlElement {
     /// 子控件排列的轴心，默认为横向排列
     open var axis: NSLayoutConstraint.Axis = .horizontal {
         didSet {
-            setNeedsUpdateConstraints()
+            updateAxis()
         }
     }
     
@@ -127,20 +127,25 @@ open class StackButton: ControlElement {
     private var spacingConstraint: NSLayoutConstraint?
     private var zeroImageConstraint: (width: NSLayoutConstraint, height: NSLayoutConstraint)?
     
-    private var hasTitle = false
-    private var hasImage = false
+    private var hasTitle: Bool {
+        if let title = titleLabel.text {
+            return title.count > 0
+        }
+        return false
+    }
+    private var hasImage: Bool {
+        if let image = imageView.image, !image.size.equalTo(.zero) {
+            return true
+        }
+        return false
+    }
     
     // MARK: - Init
     
-    public override init(frame: CGRect) {
+    public init(frame: CGRect = .zero, axis: NSLayoutConstraint.Axis = .horizontal) {
         super.init(frame: frame)
-        controlDidLoad()
-    }
-    
-    /// 初始化方法，默认排列方向为横向
-    public convenience init(axis: NSLayoutConstraint.Axis = .horizontal) {
-        self.init(frame: .zero)
         self.axis = axis
+        controlDidLoad()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -162,11 +167,6 @@ open class StackButton: ControlElement {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.setContentHuggingPriority(.required, for: .horizontal)
-        imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        imageView.setContentHuggingPriority(.required, for: .vertical)
-        imageView.setContentCompressionResistancePriority(.required, for: .vertical)
-        
         let imageWidth = imageView.widthAnchor.constraint(equalToConstant: 0)
         let imageHeight = imageView.heightAnchor.constraint(equalToConstant: 0)
         zeroImageConstraint = (imageWidth, imageHeight)
@@ -175,6 +175,7 @@ open class StackButton: ControlElement {
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         
         updateContentViewConstraints()
+        updateAxis()
     }
     
     open override func updateConstraints() {
@@ -232,7 +233,7 @@ open class StackButton: ControlElement {
                     // 设置label或者image其中一个控件的约束优先级低
                     // 让imageView相对contentView的左右约束优先级低一些, 以适应label.text文本改变时能撑起Button
                     // 并且在label.width < imageView.width时，imageView可以撑起Button的宽度
-                    temp.forEach { $0.priority = .defaultHigh }
+                    temp.forEach { $0.priority = UILayoutPriority(998) }
                 }
                 subviewsConstraints.append(contentsOf: temp)
                 subviewsConstraints.append($0.centerXAnchor.constraint(equalTo: centerXAnchor))
@@ -330,6 +331,26 @@ open class StackButton: ControlElement {
         addConstraints(contentViewConstraints)
     }
     
+    private func updateAxis() {
+        setNeedsUpdateConstraints()
+        switch axis {
+        case .horizontal:
+            imageView.setContentHuggingPriority(.required, for: .horizontal)
+            imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+            
+            imageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+            imageView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        case .vertical:
+            imageView.setContentHuggingPriority(.required, for: .vertical)
+            imageView.setContentCompressionResistancePriority(.required, for: .vertical)
+            
+            imageView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            imageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        @unknown default:
+            break
+        }
+    }
+    
     // MARK: - State Methods
     
     open override func stateDidChange() {
@@ -377,8 +398,6 @@ open class StackButton: ControlElement {
     }
     
     private func updateViewProperties() {
-        hasTitle = false
-        hasImage = false
         if let color = properties[currentState]?[.backgroundColor] as? UIColor {
             backgroundColor = color
         }
@@ -386,29 +405,29 @@ open class StackButton: ControlElement {
             titleLabel.textColor = color
             imageView.tintColor = color
         }
-        if let title = properties[currentState]?[.title] as? String {
-            titleLabel.text = title
-            setNeedsLayout()
-            if title.count > 0 {
-                hasTitle = true
-            }
+        
+        var needsLayout = false
+        
+        let title = properties[currentState]?[.title] as? String ?? properties[.normal]?[.title] as? String
+        if (title ?? "") != (titleLabel.text ?? "") {
+            needsLayout = true
         }
-        if let attributedTitle = properties[currentState]?[.attributedTitle] as? NSAttributedString {
+        titleLabel.text = title
+        
+        if let attributedTitle = (properties[currentState]?[.attributedTitle] ?? properties[.normal]?[.attributedTitle]) as? NSAttributedString {
             titleLabel.attributedText = attributedTitle
-            setNeedsLayout()
-            if attributedTitle.length > 0 {
-                hasTitle = true
-            }
+            needsLayout = true
         }
         
-        if let image = properties[currentState]?[.image] as? UIImage {
-            imageView.image = image
-            setNeedsLayout()
-            if !image.size.equalTo(.zero) {
-                hasImage = true
-            }
+        let image = properties[currentState]?[.image] as? UIImage ?? properties[.normal]?[.image] as? UIImage
+        if image?.size.equalTo(imageView.image?.size ?? .zero) == false {
+            needsLayout = true
         }
+        imageView.image = image
         
+        if needsLayout {
+            setNeedsLayout()
+        }
         imageView.alpha = adjustImageWhenHighlighted ? 0.3 : 1
         
         updateSpacing()
@@ -460,9 +479,9 @@ open class StackButton: ControlElement {
     /// 适用于设置`frame`后，调用`sizeToFit`可自适应大小
     open override func sizeToFit() {
         let size = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        var bounds = self.bounds
-        bounds.size = size
-        self.bounds = bounds
+        var frame = self.frame
+        frame.size = size
+        self.frame = frame
     }
 }
 
