@@ -16,13 +16,7 @@ open class StackButton: ControlElement {
     
     /// 图片的位置
     public enum ImagePosition {
-        /// 前面，
-        /// 当`axis==horizontal`子控件横向排列时，`front=left`
-        /// 当`axis==vertical`子控件垂直排列时，`front=top`
         case front
-        /// 后面
-        /// 当`axis==horizontal`子控件横向排列时，`back=right`
-        /// 当`axis==vertical`子控件垂直排列时，`front=bottom`
         case back
     }
     
@@ -36,11 +30,11 @@ open class StackButton: ControlElement {
     }
     
     private var animator: UIViewPropertyAnimator?
-    private var properties: [ElementState:[PropertyKey:Any]] = [
-        ElementState.normal: [:],
-        ElementState.highlighted: [:],
-        ElementState.disabled: [:],
-        ElementState.selected: [:]
+    private var properties: [State: [PropertyKey: Any]] = [
+        State.normal: [:],
+        State.highlighted: [:],
+        State.disabled: [:],
+        State.selected: [:]
     ]
     
     /// 子控件之间的间距
@@ -50,7 +44,7 @@ open class StackButton: ControlElement {
         }
     }
     
-    /// `image`的位置，默认在`title`的前面
+    /// `image`的位置，默认在`title`的前面，位置变化与`axis`有关
     open var imagePosition: ImagePosition = .front {
         didSet {
             setNeedsUpdateConstraints()
@@ -271,9 +265,6 @@ open class StackButton: ControlElement {
             }
             return false
         }
-        if spacingConstraint != nil {
-            print(#function)
-        }
         addConstraints(subviewsConstraints)
         
         updateSpacing()
@@ -346,27 +337,27 @@ open class StackButton: ControlElement {
         updateViewProperties()
     }
     
-    open func setTitle(_ title: String?, for state: ElementState) {
+    open func setTitle(_ title: String?, for state: State) {
         defer { updateViewProperties() }
         properties[state]?[.title] = title
     }
     
-    open func setAttributedTitle(_ attributedTitle: NSAttributedString?, for state: ElementState) {
+    open func setAttributedTitle(_ attributedTitle: NSAttributedString?, for state: State) {
         defer { updateViewProperties() }
         properties[state]?[.attributedTitle] = attributedTitle
     }
     
-    open func setTitleColor(_ titleColor: UIColor?, for state: ElementState) {
+    open func setTitleColor(_ titleColor: UIColor?, for state: State) {
         defer { updateViewProperties() }
         properties[state]?[.titleColor] = titleColor
     }
     
-    open func setBackgroundColor(_ backgroundColor: UIColor?, for state: ElementState) {
+    open func setBackgroundColor(_ backgroundColor: UIColor?, for state: State) {
         defer { updateViewProperties() }
         properties[state]?[.backgroundColor] = backgroundColor
     }
     
-    open func setImage(_ image: UIImage?, for state: ElementState) {
+    open func setImage(_ image: UIImage?, for state: State) {
         defer { updateViewProperties() }
         properties[state]?[.image] = image
     }

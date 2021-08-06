@@ -37,32 +37,27 @@ public extension FeedbackGeneratable {
     }
 }
 
-
-
 open class ControlElement: UIControl, FeedbackGeneratable {
-   public enum ElementState: CaseIterable {
-        case normal, highlighted, disabled, selected
-    }
 
-    private(set) var currentState: ElementState = .normal
+    private(set) var currentState: State = .normal
 
     open override var isHighlighted: Bool {
         didSet {
-            let newState: ElementState = isHighlighted ? .highlighted : (isSelected ? .selected : .normal)
+            let newState: State = isHighlighted ? .highlighted : (isSelected ? .selected : .normal)
             setState(newState)
         }
     }
 
     open override var isEnabled: Bool {
         didSet {
-            let newState: ElementState = isEnabled ? (isSelected ? .selected : .normal) : .disabled
+            let newState: State = isEnabled ? (isSelected ? .selected : .normal) : .disabled
             setState(newState)
         }
     }
     
     open override var isSelected: Bool {
         didSet {
-            let newState: ElementState = isSelected ? .selected : .normal
+            let newState: State = isSelected ? .selected : .normal
             setState(newState)
         }
     }
@@ -79,7 +74,7 @@ open class ControlElement: UIControl, FeedbackGeneratable {
         setupFeedback()
     }
 
-    final public func setState(_ newState: ElementState) {
+    final public func setState(_ newState: State) {
         currentState = newState
         stateDidChange()
     }
@@ -100,5 +95,15 @@ open class ControlElement: UIControl, FeedbackGeneratable {
     private func handleFeedbackIfNeeded() {
         guard isFeedbackEnabled else { return }
         generateSelectionFeedback()
+    }
+}
+
+extension UIControl.State: Hashable, CaseIterable {
+    public static var allCases: [UIControl.State] {
+        return [.normal, .selected, .highlighted, .disabled]
+    }
+    
+    public var hashValue: Int {
+        return Int(rawValue)
     }
 }
