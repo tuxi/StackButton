@@ -217,7 +217,7 @@ open class StackButton: ControlElement {
                     // 设置label或者image其中一个控件的约束优先级低
                     // 让imageView相对contentView的上下约束优先级低一些, 以适应label.text文本改变时能撑起Button
                     // 并且在label.height < imageView.height时，imageView可以撑起Button的宽度
-                    temp.forEach { $0.priority = .defaultLow }
+                    temp.forEach { $0.priority = .defaultHigh }
                 }
                 subviewsConstraints.append(contentsOf: temp)
                 subviewsConstraints.append($0.centerYAnchor.constraint(equalTo: centerYAnchor))
@@ -232,7 +232,7 @@ open class StackButton: ControlElement {
                     // 设置label或者image其中一个控件的约束优先级低
                     // 让imageView相对contentView的左右约束优先级低一些, 以适应label.text文本改变时能撑起Button
                     // 并且在label.width < imageView.width时，imageView可以撑起Button的宽度
-                    temp.forEach { $0.priority = .defaultLow }
+                    temp.forEach { $0.priority = .defaultHigh }
                 }
                 subviewsConstraints.append(contentsOf: temp)
                 subviewsConstraints.append($0.centerXAnchor.constraint(equalTo: centerXAnchor))
@@ -455,6 +455,14 @@ open class StackButton: ControlElement {
             self.setState(self.isSelected ? .selected : .normal)
         })
         animator?.startAnimation()
+    }
+    
+    /// 适用于设置`frame`后，调用`sizeToFit`可自适应大小
+    open override func sizeToFit() {
+        let size = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        var bounds = self.bounds
+        bounds.size = size
+        self.bounds = bounds
     }
 }
 

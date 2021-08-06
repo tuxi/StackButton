@@ -21,11 +21,8 @@ class ViewController: UIViewController {
         
         let hButton = testHButton()
         let vButton = testVButton()
-        
-        let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30))
-        frameButton.setTitle("你好frame", for: .normal)
-        frameButton.backgroundColor = .red
-        view.addSubview(frameButton)
+
+        testFrameButton()
         
         timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self, weak hButton, weak vButton] timer in
             self?.tapButton(sender: hButton!)
@@ -77,7 +74,7 @@ class ViewController: UIViewController {
         button.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -30).isActive = true
         
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.purple
         button.setTitleColor(.white, for: .normal)
         button.setImage(UIImage(named: "map_filter_selected"), for: .normal)
         button.spacing = 8
@@ -86,6 +83,17 @@ class ViewController: UIViewController {
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         return button
+    }
+    
+    func testFrameButton() {
+        let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30))
+        frameButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        frameButton.spacing = 10
+        frameButton.setTitle("你好frame", for: .normal)
+        frameButton.backgroundColor = .red
+        frameButton.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)
+        frameButton.sizeToFit()
+        view.addSubview(frameButton)
     }
     
     @objc private func tapButton(sender: StackButton) {
@@ -99,6 +107,7 @@ class ViewController: UIViewController {
             case .left:
                 sender.contentHorizontalAlignment = .right
                 sender.setTitle("右对齐", for: .normal)
+                sender.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)
             case .right:
                 sender.contentHorizontalAlignment = .center
                 sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
@@ -122,6 +131,7 @@ class ViewController: UIViewController {
                 sender.setTitle("中心对齐，测试文字长度嘟嘟嘟嘟对独独对嘟嘟嘟嘟嘟嘟对嘟嘟", for: .normal)
                 sender.titleLabel.numberOfLines = 0
                 sender.imagePosition = .back
+                sender.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)
             case .center:
                 sender.contentVerticalAlignment = .top
                 sender.setTitle("顶部对齐，4456546546546465465464556qweqweqweqweqeqeqweqweqeqeqw", for: .normal)
