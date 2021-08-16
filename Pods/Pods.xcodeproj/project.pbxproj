@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1758C05A2101470D78DA322A91CB8E5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		319BDEC97138302C1C9759BCF6115B17 /* ControlElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDA62A2B5EF5DAC5CD3803A0339767 /* ControlElement.swift */; };
+		3665827B78A6DF5F146708ECDD2C21E4 /* Pods-StackButtonExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6509A128172B5122BCE44EEB25294B9 /* Pods-StackButtonExample-dummy.m */; };
+		5893A69217AF98383396079B52EE7F99 /* StackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4D443CAD78FCF216378400D759F19 /* StackButton.swift */; };
+		7457E59BFBCC7A29B6FB58A35065837D /* StackButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB6F4414CC8754FA983C644BF36C3A /* StackButton-dummy.m */; };
+		8090EAA3049D73425876FE0ECCE7EADF /* Pods-StackButtonExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E95BE2C73C4942287250DC156D92E8 /* Pods-StackButtonExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93064E7317F8DF8661864C79D828EA7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		AA0D9854CA1E6443035AB39C0BE5F633 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
+		E6D3947DBA7AC2465613EEC7725CAF07 /* StackButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7423164726356181E950BA32BDBA0E29 /* StackButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DA5C8E5CDDF5273AF464A67FDBED43F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58926FDA24DA8E3C7F9F5C4515A39E91;
+			remoteInfo = StackButton;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03DC7E7AF011133CD918BD72A8E896C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		091C7B886822162B0D2AAD7DFA3F3E27 /* Pods-StackButtonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StackButtonExample.release.xcconfig"; sourceTree = "<group>"; };
+		23F4D443CAD78FCF216378400D759F19 /* StackButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StackButton.swift; path = Source/StackButton.swift; sourceTree = "<group>"; };
+		581CAB1F5E0B00AFC2CBE8EC2CFB5231 /* StackButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = StackButton.framework; path = StackButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5DF77551707562B60DD8DDE4633284 /* StackButton-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "StackButton-Info.plist"; sourceTree = "<group>"; };
+		5E76C40D77D5A956F8E706D3563A7CF8 /* StackButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = StackButton.modulemap; sourceTree = "<group>"; };
+		7423164726356181E950BA32BDBA0E29 /* StackButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "StackButton-umbrella.h"; sourceTree = "<group>"; };
+		7836B996106C61C6C87F29237BE01328 /* StackButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "StackButton-prefix.pch"; sourceTree = "<group>"; };
+		88E95BE2C73C4942287250DC156D92E8 /* Pods-StackButtonExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-StackButtonExample-umbrella.h"; sourceTree = "<group>"; };
+		9104EBD724FD0D32E3DDB089220B7CF0 /* Pods-StackButtonExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StackButtonExample.debug.xcconfig"; sourceTree = "<group>"; };
+		9562373D75DEA9EC118170130037B770 /* Pods-StackButtonExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-StackButtonExample-frameworks.sh"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A41016E1BC042F91E398F0AFD07320EC /* Pods-StackButtonExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-StackButtonExample-acknowledgements.plist"; sourceTree = "<group>"; };
+		A9EB5F0B8D868820DAB2766F17142FDF /* Pods-StackButtonExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-StackButtonExample.modulemap"; sourceTree = "<group>"; };
+		B5FB6F4414CC8754FA983C644BF36C3A /* StackButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "StackButton-dummy.m"; sourceTree = "<group>"; };
+		B8C9F583F3291C29964F1C6B7B104A24 /* Pods-StackButtonExample-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-StackButtonExample-Info.plist"; sourceTree = "<group>"; };
+		C8330CA14C4B9DF0F39D579DF8FC7BEE /* Pods_StackButtonExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_StackButtonExample.framework; path = "Pods-StackButtonExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D6509A128172B5122BCE44EEB25294B9 /* Pods-StackButtonExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-StackButtonExample-dummy.m"; sourceTree = "<group>"; };
+		E7482820D7C775219C09E4ACBA938CF1 /* StackButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = StackButton.debug.xcconfig; sourceTree = "<group>"; };
+		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F5ED815872D42F9772862A361FA8F860 /* Pods-StackButtonExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-StackButtonExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F703DB6279D163A1FE597EB7D6B6628E /* StackButton.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = StackButton.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F7DD7187992859BF5D61E0B08EE80CF4 /* StackButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = StackButton.release.xcconfig; sourceTree = "<group>"; };
+		FFFDA62A2B5EF5DAC5CD3803A0339767 /* ControlElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ControlElement.swift; path = Source/ControlElement.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C8E413EA525EE008C07A9B2ED0C4A28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1758C05A2101470D78DA322A91CB8E5F /* Foundation.framework in Frameworks */,
+				AA0D9854CA1E6443035AB39C0BE5F633 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2879D157CF7B81DF12A6CCAB681836AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93064E7317F8DF8661864C79D828EA7E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		47FA3CB900D94C35FC879156C05D1675 /* StackButton */ = {
+			isa = PBXGroup;
+			children = (
+				FFFDA62A2B5EF5DAC5CD3803A0339767 /* ControlElement.swift */,
+				23F4D443CAD78FCF216378400D759F19 /* StackButton.swift */,
+				DD8F9D738682BD2F9F1FB44185CDAA8B /* Pod */,
+				7C6ED4CA077CB8C7BD1C8F59E407D648 /* Support Files */,
+			);
+			name = StackButton;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */,
+				D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7C6ED4CA077CB8C7BD1C8F59E407D648 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5E76C40D77D5A956F8E706D3563A7CF8 /* StackButton.modulemap */,
+				B5FB6F4414CC8754FA983C644BF36C3A /* StackButton-dummy.m */,
+				5B5DF77551707562B60DD8DDE4633284 /* StackButton-Info.plist */,
+				7836B996106C61C6C87F29237BE01328 /* StackButton-prefix.pch */,
+				7423164726356181E950BA32BDBA0E29 /* StackButton-umbrella.h */,
+				E7482820D7C775219C09E4ACBA938CF1 /* StackButton.debug.xcconfig */,
+				F7DD7187992859BF5D61E0B08EE80CF4 /* StackButton.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Pods/Target Support Files/StackButton";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				F74911CF4220ED93DF9DE7ED895AE4BA /* Development Pods */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				D3644A4FC7C91622F24791530D93315C /* Products */,
+				CFE3B2E51FB7197D8B0696EED0DBC602 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		CFE3B2E51FB7197D8B0696EED0DBC602 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFE19C00C635A14708DF821AF0F09937 /* Pods-StackButtonExample */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D3644A4FC7C91622F24791530D93315C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8330CA14C4B9DF0F39D579DF8FC7BEE /* Pods_StackButtonExample.framework */,
+				581CAB1F5E0B00AFC2CBE8EC2CFB5231 /* StackButton.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD8F9D738682BD2F9F1FB44185CDAA8B /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				03DC7E7AF011133CD918BD72A8E896C3 /* README.md */,
+				F703DB6279D163A1FE597EB7D6B6628E /* StackButton.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		DFE19C00C635A14708DF821AF0F09937 /* Pods-StackButtonExample */ = {
+			isa = PBXGroup;
+			children = (
+				A9EB5F0B8D868820DAB2766F17142FDF /* Pods-StackButtonExample.modulemap */,
+				F5ED815872D42F9772862A361FA8F860 /* Pods-StackButtonExample-acknowledgements.markdown */,
+				A41016E1BC042F91E398F0AFD07320EC /* Pods-StackButtonExample-acknowledgements.plist */,
+				D6509A128172B5122BCE44EEB25294B9 /* Pods-StackButtonExample-dummy.m */,
+				9562373D75DEA9EC118170130037B770 /* Pods-StackButtonExample-frameworks.sh */,
+				B8C9F583F3291C29964F1C6B7B104A24 /* Pods-StackButtonExample-Info.plist */,
+				88E95BE2C73C4942287250DC156D92E8 /* Pods-StackButtonExample-umbrella.h */,
+				9104EBD724FD0D32E3DDB089220B7CF0 /* Pods-StackButtonExample.debug.xcconfig */,
+				091C7B886822162B0D2AAD7DFA3F3E27 /* Pods-StackButtonExample.release.xcconfig */,
+			);
+			name = "Pods-StackButtonExample";
+			path = "Target Support Files/Pods-StackButtonExample";
+			sourceTree = "<group>";
+		};
+		F74911CF4220ED93DF9DE7ED895AE4BA /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				47FA3CB900D94C35FC879156C05D1675 /* StackButton */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4EFC8491028AE3F78A6D6515F4536700 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8090EAA3049D73425876FE0ECCE7EADF /* Pods-StackButtonExample-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CEFA3299344301F7669025DE7983E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6D3947DBA7AC2465613EEC7725CAF07 /* StackButton-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		58926FDA24DA8E3C7F9F5C4515A39E91 /* StackButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52BD7F497A9A59A39F28577790FE3B28 /* Build configuration list for PBXNativeTarget "StackButton" */;
+			buildPhases = (
+				B8CEFA3299344301F7669025DE7983E4 /* Headers */,
+				59EEB154F469A0910FB673304739E7C0 /* Sources */,
+				0C8E413EA525EE008C07A9B2ED0C4A28 /* Frameworks */,
+				B3AEFF701C7035EEA55E4DE2E597A360 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StackButton;
+			productName = StackButton;
+			productReference = 581CAB1F5E0B00AFC2CBE8EC2CFB5231 /* StackButton.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		778D02355060EF93963F4A04AFDEC873 /* Pods-StackButtonExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6891756BBFB7566CDF9D4B20BBC289A3 /* Build configuration list for PBXNativeTarget "Pods-StackButtonExample" */;
+			buildPhases = (
+				4EFC8491028AE3F78A6D6515F4536700 /* Headers */,
+				047C7963F09FECBF1AEAC8FA8E806304 /* Sources */,
+				2879D157CF7B81DF12A6CCAB681836AB /* Frameworks */,
+				4C95B008DF27FB63208C505B24179443 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0B65D97102C4AB6A8567F6B7D086572 /* PBXTargetDependency */,
+			);
+			name = "Pods-StackButtonExample";
+			productName = "Pods-StackButtonExample";
+			productReference = C8330CA14C4B9DF0F39D579DF8FC7BEE /* Pods_StackButtonExample.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = D3644A4FC7C91622F24791530D93315C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				778D02355060EF93963F4A04AFDEC873 /* Pods-StackButtonExample */,
+				58926FDA24DA8E3C7F9F5C4515A39E91 /* StackButton */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C95B008DF27FB63208C505B24179443 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3AEFF701C7035EEA55E4DE2E597A360 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		047C7963F09FECBF1AEAC8FA8E806304 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3665827B78A6DF5F146708ECDD2C21E4 /* Pods-StackButtonExample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59EEB154F469A0910FB673304739E7C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				319BDEC97138302C1C9759BCF6115B17 /* ControlElement.swift in Sources */,
+				7457E59BFBCC7A29B6FB58A35065837D /* StackButton-dummy.m in Sources */,
+				5893A69217AF98383396079B52EE7F99 /* StackButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0B65D97102C4AB6A8567F6B7D086572 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StackButton;
+			target = 58926FDA24DA8E3C7F9F5C4515A39E91 /* StackButton */;
+			targetProxy = 3DA5C8E5CDDF5273AF464A67FDBED43F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E3D5BAF95A6E6F98328C010105D6A05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7482820D7C775219C09E4ACBA938CF1 /* StackButton.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/StackButton/StackButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StackButton/StackButton-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/StackButton/StackButton.modulemap";
+				PRODUCT_MODULE_NAME = StackButton;
+				PRODUCT_NAME = StackButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		31FC110D691B180C6F072F6393A510A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7DD7187992859BF5D61E0B08EE80CF4 /* StackButton.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/StackButton/StackButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StackButton/StackButton-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/StackButton/StackButton.modulemap";
+				PRODUCT_MODULE_NAME = StackButton;
+				PRODUCT_NAME = StackButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		90262815B271C14E018BAFDEC7D7406F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9104EBD724FD0D32E3DDB089220B7CF0 /* Pods-StackButtonExample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-StackButtonExample/Pods-StackButtonExample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-StackButtonExample/Pods-StackButtonExample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9324CBF4BDC0E632040765382389D6E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 091C7B886822162B0D2AAD7DFA3F3E27 /* Pods-StackButtonExample.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-StackButtonExample/Pods-StackButtonExample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-StackButtonExample/Pods-StackButtonExample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */,
+				C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52BD7F497A9A59A39F28577790FE3B28 /* Build configuration list for PBXNativeTarget "StackButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3D5BAF95A6E6F98328C010105D6A05 /* Debug */,
+				31FC110D691B180C6F072F6393A510A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6891756BBFB7566CDF9D4B20BBC289A3 /* Build configuration list for PBXNativeTarget "Pods-StackButtonExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90262815B271C14E018BAFDEC7D7406F /* Debug */,
+				9324CBF4BDC0E632040765382389D6E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

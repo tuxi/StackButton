@@ -1,4 +1,4 @@
-//
+    //
 //  StackButton.swift
 //  StackButton
 //
@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 
 /// 借鉴`UIStackView`的布局思想，实现一个自动布局的`StackButton`
 /// 使用方式与`UIButton`一致，内容默认的排列方向为横向
@@ -338,8 +339,8 @@ open class StackButton: ControlElement {
             imageView.setContentHuggingPriority(.required, for: .horizontal)
             imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
             
-            imageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-            imageView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+            imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+            imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         case .vertical:
             imageView.setContentHuggingPriority(.required, for: .vertical)
             imageView.setContentCompressionResistancePriority(.required, for: .vertical)

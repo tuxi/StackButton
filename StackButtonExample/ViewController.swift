@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StackButton
 
 class ViewController: UIViewController {
     
@@ -87,7 +88,7 @@ class ViewController: UIViewController {
         let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30))
         frameButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         frameButton.spacing = 10
-        frameButton.setTitle("你好frame", for: .normal)
+        frameButton.setTitle("点我高亮", for: .normal)
         frameButton.setTitle("传将为特斯拉提供刀片电池，9000亿比亚迪股价盘中又创新高", for: .highlighted)
         frameButton.backgroundColor = .red
         frameButton.setImage(UIImage(named: "login_problem_add_photo"), for: .normal)

@@ -1,0 +1,6 @@
+framework module StackButton {
+  umbrella header "StackButton-umbrella.h"
+
+  export *
+  module * { export * }
+}

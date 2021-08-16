@@ -1,0 +1,16 @@
+PODS:
+  - StackButton (0.1)
+
+DEPENDENCIES:
+  - StackButton (from `./`)
+
+EXTERNAL SOURCES:
+  StackButton:
+    :path: "./"
+
+SPEC CHECKSUMS:
+  StackButton: 6effae75920caf23d1fc39983ab579a2eec72d4e
+
+PODFILE CHECKSUM: e39ed6c29ebe3d6266691a9ea8521149065fe6a4
+
+COCOAPODS: 1.10.1
