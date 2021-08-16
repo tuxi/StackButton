@@ -10,8 +10,8 @@ Pod::Spec.new do |spec|
 
   spec.name         = "StackButton"
   spec.version      = "0.1"
-  spec.summary      = "An empty data view with customizable status, which supports UIView, UITableView and UICollectionView"
-  spec.description  = "An empty data view with customizable status, which supports UIView, UITableView and UICollectionView"
+  spec.summary      = "支持横竖排列的Button"
+  spec.description  = "支持横竖排列的Button"
 
   spec.homepage     = "https://github.com/tuxi/StackButton"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
