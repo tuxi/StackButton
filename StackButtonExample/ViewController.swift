@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     }
     
     func testFrameButton() {
-        let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30))
+        let frameButton = StackButton(frame: CGRect(x: 100, y: 300, width: 80, height: 30), axis: .vertical)
         frameButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         frameButton.spacing = 10
         frameButton.setTitle("点我高亮", for: .normal)

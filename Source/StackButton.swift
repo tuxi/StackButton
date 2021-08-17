@@ -284,7 +284,8 @@ open class StackButton: ControlElement {
         let contentViewVFormat = "V:|-(top)-[view]-(bottom)-|"
         
         /// 上下左右的约束优先级跟垂直和横向对齐有关
-        var priorities = (top: Float(900), left: Float(900), bottom: Float(900), right: Float(900))
+        let priority: Float = 900
+        var priorities = (top: priority, left: priority, bottom: priority, right: priority)
         
         switch contentHorizontalAlignment {
         case .left, .leading:
