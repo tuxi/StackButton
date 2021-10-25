@@ -34,8 +34,8 @@ class ViewController: UIViewController {
     }
     
     /// 测试横向布局的StackButton
-    func testHButton() -> StackButton {
-        let hButton = StackButton()
+    func testHButton() -> HButton {
+        let hButton = HButton()
         hButton.setTitle("点我", for: .normal)
         view.addSubview(hButton)
         

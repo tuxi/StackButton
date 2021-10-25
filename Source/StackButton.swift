@@ -6,7 +6,21 @@
 //
 
 import UIKit
-
+    
+open class HButton: StackButton {
+        
+}
+open class VButton: StackButton {
+    
+    init(frame: CGRect) {
+        super.init(frame: frame, axis: .vertical)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.axis = .vertical
+    }
+}
 
 /// 借鉴`UIStackView`的布局思想，实现一个自动布局的`StackButton`
 /// 使用方式与`UIButton`一致，内容默认的排列方向为横向
@@ -174,6 +188,7 @@ open class StackButton: ControlElement {
         
         /// 抵抗外部设置Button最大宽度时，即使不满足条件也被拉伸的问题
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
         
         updateContentViewConstraints()
         updateAxis()
